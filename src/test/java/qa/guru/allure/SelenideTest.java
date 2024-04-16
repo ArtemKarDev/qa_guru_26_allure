@@ -72,7 +72,7 @@ public class SelenideTest extends TestBase {
 
         @Attachment(value = "Скриншот", type = "image/png", fileExtension = "png")
         public byte[] attachScreenshot() {
-            return ((TakesScreenshot)WebDriverRunner.getWebDriver()).getScreenshotAs(OutputType.BYTES);
+            return ((TakesScreenshot) WebDriverRunner.getWebDriver()).getScreenshotAs(OutputType.BYTES);
         }
 
         @Step("Открываем главную страницу")
@@ -81,26 +81,31 @@ public class SelenideTest extends TestBase {
         }
 
         @Step("Кликаем на поиск")
-        public void searchInputClick()  {
+        public void searchInputClick() {
             $(".search-input").click();
         }
+
         @Step("Вводим запрос")
         public void searchInputSendKeys() {
             $("#query-builder-test").sendKeys("eroshenkoam/allure-example");
         }
+
         @Step("Жмем Enter")
         public void searchInputPressEnter() {
             $("#query-builder-test").pressEnter();
         }
+
         @Step("Кликаем на результат поиска")
         public void searchOutputClick() {
             $(linkText("eroshenkoam/allure-example")).click();
         }
+
         @Step("Кликаем на кнопку Issues")
         public void issuesTabClick() {
             $("#issues-tab").click();
             attachScreenshot();
         }
+
         @Step("Выполняется переход на страницу Issues")
         public void issuesExist() {
             $(withText("#80")).should(Condition.exist);
@@ -109,6 +114,7 @@ public class SelenideTest extends TestBase {
                     "text/html",
                     "html",
                     WebDriverRunner.getWebDriver().getPageSource().getBytes(StandardCharsets.UTF_8)
+
             );
         }
 
@@ -128,9 +134,7 @@ public class SelenideTest extends TestBase {
         steps.issuesTabClick();
         steps.issuesExist();
 
-
     }
-
 
 
 }

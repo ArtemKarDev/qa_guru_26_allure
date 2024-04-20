@@ -12,10 +12,8 @@ public class TestBase {
     @BeforeAll
     @Step("Открыть страницу в разрешении 1920x1080")
     static void beforeAll() {
-        //Configuration.baseUrl = "https://github.com";
         Configuration.browserSize = "1920x1080";
-        //Configuration.pageLoadStrategy = "eager";
-        Configuration.holdBrowserOpen = true;
+        Configuration.pageLoadStrategy = "eager";
     }
 
     @AfterEach

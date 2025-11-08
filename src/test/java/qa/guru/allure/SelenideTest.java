@@ -3,10 +3,9 @@ package qa.guru.allure;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import io.qameta.allure.Allure;
-import io.qameta.allure.Attachment;
-import io.qameta.allure.Step;
+import io.qameta.allure.*;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -23,6 +22,12 @@ public class SelenideTest extends TestBase {
 
 
     @Test
+    @Feature("Issue в репозиории")
+    @Story("Работа с Issue")
+    @Owner("KarlashovAM")
+    @Severity(SeverityLevel.BLOCKER)
+    @Link(value = "Testing", url = "https://...")
+    @DisplayName("Включение issue для авторизованного пользователя")
     public void testIssueSearch() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         open("https://github.com");
@@ -37,6 +42,13 @@ public class SelenideTest extends TestBase {
 
     @Test
     public void testIssueSearchLambdaSteps() {
+        Allure.getLifecycle().updateTestCase(
+                t -> t.setName("Включение issue для авторизованного пользователя"));
+        Allure.feature("Issue в репозиории");
+        Allure.story("Работа с Issue");
+        Allure.label("owner","KarlashovAM");
+        Allure.label("severity",SeverityLevel.CRITICAL.value());
+        Allure.link("testing","http://");
         SelenideLogger.addListener("allure", new AllureSelenide());
 
         step("Открываем главную страницу", () -> {

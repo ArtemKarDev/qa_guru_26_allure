@@ -2,13 +2,11 @@ package qa.guru.allure;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
-import com.codeborne.selenide.logevents.SelenideLogger;
+
 import io.qameta.allure.*;
-import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+
 
 import java.nio.charset.StandardCharsets;
 
@@ -29,7 +27,6 @@ public class SelenideTest extends TestBase {
     @Link(value = "Testing", url = "https://...")
     @DisplayName("Включение issue для авторизованного пользователя")
     public void testIssueSearch() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
         open("https://github.com");
         $(".search-input").click();
         $("#query-builder-test").sendKeys("eroshenkoam/allure-example");
@@ -49,7 +46,6 @@ public class SelenideTest extends TestBase {
         Allure.label("owner","KarlashovAM");
         Allure.label("severity",SeverityLevel.CRITICAL.value());
         Allure.link("testing","http://");
-        SelenideLogger.addListener("allure", new AllureSelenide());
 
         step("Открываем главную страницу", () -> {
             open("https://github.com");
@@ -83,7 +79,6 @@ public class SelenideTest extends TestBase {
 
     @Test
     public void testGithubIssueSteps() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
         WebSteps steps = new WebSteps();
 
         steps.openMainPage();
